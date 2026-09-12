@@ -4,6 +4,12 @@ An [Omarchy](https://omarchy.org/) shell plugin that overlays a random
 motivational Quran ayah — Arabic text, translation, and reference — on your
 desktop background, and gives you a bar icon to control it.
 
+## Screenshots
+
+| Overlay on the desktop | Control panel |
+|---|---|
+| ![Ayah overlay](screenshots/desktop-overlay.png) | ![Control panel](preview.png) |
+
 ## Features
 
 - **Desktop overlay**: a random ayah sits just above your wallpaper (below
