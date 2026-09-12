@@ -22,6 +22,23 @@ Item {
   readonly property string ayahsPath: String(Qt.resolvedUrl("ayahs.json")).replace("file://", "")
   readonly property string settingsPath: Quickshell.env("HOME") + "/.local/state/omarchy/quran-motivation-settings.json"
 
+  // Security hardening (see SECURITY.md in the repo for the reasoning): a
+  // no-follow/ownership/size guard before ever trusting settingsPath's
+  // content, closing the gap a planted or swapped path could exploit.
+  // GNU `stat` without `-L` reports the path itself rather than whatever a
+  // symlink there points to, so this never follows a swapped/planted link.
+  readonly property string statBin: "/usr/bin/stat"
+  readonly property int settingsMaxBytes: 65536
+
+  function currentUser() {
+    var u = Quickshell.env("USER")
+    return (u && u.length > 0) ? u : Quickshell.env("LOGNAME")
+  }
+
+  function verifySettingsPath() {
+    if (!statProc.running) statProc.running = true
+  }
+
   property var ayahs: []
   property int currentIndex: -1
   readonly property var current: (currentIndex >= 0 && currentIndex < ayahs.length) ? ayahs[currentIndex] : null
@@ -91,16 +108,49 @@ Item {
     onFileChanged: reload()
   }
 
+  Process {
+    id: statProc
+    command: [root.statBin, "-c", "%F|%U|%s", root.settingsPath]
+    clearEnvironment: true
+    environment: ({ "PATH": "/usr/bin" })
+    stdout: StdioCollector { id: statOut; waitForEnd: true }
+    onExited: function(exitCode) {
+      if (exitCode !== 0) {
+        // Nothing at this path yet — safe; defaults apply until the first
+        // write creates it (via the atomic, rename-based write below).
+        settingsFile.blockLoading = true
+        root.applySettings("")
+        return
+      }
+      var parts = String(statOut.text || "").trim().split("|")
+      var isRegularFile = parts[0] === "regular file"
+      var ownedByUs = parts[1] === root.currentUser()
+      var sizeOk = parseInt(parts[2] || "0", 10) <= root.settingsMaxBytes
+      if (isRegularFile && ownedByUs && sizeOk) {
+        settingsFile.blockLoading = false
+        settingsFile.reload()
+      } else {
+        // Refuses to read through a symlink, a file owned by someone else,
+        // or an implausibly large file — falls back to defaults instead.
+        settingsFile.blockLoading = true
+        root.applySettings("")
+      }
+    }
+  }
+
   FileView {
     id: settingsFile
     path: root.settingsPath
+    blockLoading: true
     watchChanges: true
     atomicWrites: true
     printErrors: false
     onLoaded: root.applySettings(text())
     onLoadFailed: root.applySettings("")
-    onFileChanged: reload()
+    onFileChanged: root.verifySettingsPath()
   }
+
+  Component.onCompleted: root.verifySettingsPath()
 
   IpcHandler {
     target: "io.github.r4y-br.quran-motivation"

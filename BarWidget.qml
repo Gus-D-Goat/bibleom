@@ -12,6 +12,34 @@ Panel {
 
   readonly property string settingsPath: Quickshell.env("HOME") + "/.local/state/omarchy/quran-motivation-settings.json"
 
+  // Security hardening (see SECURITY.md in the repo for the reasoning):
+  // trusted absolute binaries, a minimal explicit environment for every
+  // spawned process (no ambient PATH/LD_PRELOAD/etc. inheritance), and a
+  // no-follow/ownership/size guard before ever trusting settingsPath's
+  // content — all closing the gap a planted or swapped path could exploit.
+  readonly property string omarchyShellBin: "/usr/bin/omarchy-shell"
+  readonly property string statBin: "/usr/bin/stat"
+  readonly property int settingsMaxBytes: 65536
+  readonly property var minimalShellEnv: ({
+    "PATH": "/usr/bin",
+    "HOME": Quickshell.env("HOME") || "",
+    "OMARCHY_PATH": Quickshell.env("OMARCHY_PATH") || "/usr/share/omarchy",
+    "WAYLAND_DISPLAY": Quickshell.env("WAYLAND_DISPLAY") || "",
+    "XDG_RUNTIME_DIR": Quickshell.env("XDG_RUNTIME_DIR") || ""
+  })
+
+  function currentUser() {
+    var u = Quickshell.env("USER")
+    return (u && u.length > 0) ? u : Quickshell.env("LOGNAME")
+  }
+
+  // Re-checks settingsPath's on-disk identity before any read is allowed.
+  // GNU `stat` without `-L` reports the path itself rather than whatever a
+  // symlink there points to, so this never follows a swapped/planted link.
+  function verifySettingsPath() {
+    if (!statProc.running) statProc.running = true
+  }
+
   property bool visibleSetting: Settings.DEFAULTS.visible
   property real scale: Settings.DEFAULTS.scale
   property real posX: Settings.DEFAULTS.posX
@@ -80,25 +108,62 @@ Panel {
     if (!repositionProc.running) repositionProc.running = true
   }
 
+  Process {
+    id: statProc
+    command: [root.statBin, "-c", "%F|%U|%s", root.settingsPath]
+    clearEnvironment: true
+    environment: ({ "PATH": "/usr/bin" })
+    stdout: StdioCollector { id: statOut; waitForEnd: true }
+    onExited: function(exitCode) {
+      if (exitCode !== 0) {
+        // Nothing at this path yet — safe; defaults apply until the first
+        // write creates it (via the atomic, rename-based write below).
+        settingsFile.blockLoading = true
+        root.applyLoaded("")
+        return
+      }
+      var parts = String(statOut.text || "").trim().split("|")
+      var isRegularFile = parts[0] === "regular file"
+      var ownedByUs = parts[1] === root.currentUser()
+      var sizeOk = parseInt(parts[2] || "0", 10) <= root.settingsMaxBytes
+      if (isRegularFile && ownedByUs && sizeOk) {
+        settingsFile.blockLoading = false
+        settingsFile.reload()
+      } else {
+        // Refuses to read through a symlink, a file owned by someone else,
+        // or an implausibly large file — falls back to defaults instead.
+        settingsFile.blockLoading = true
+        root.applyLoaded("")
+      }
+    }
+  }
+
   FileView {
     id: settingsFile
     path: root.settingsPath
+    blockLoading: true
     watchChanges: true
     atomicWrites: true
     printErrors: false
     onLoaded: root.applyLoaded(text())
     onLoadFailed: root.applyLoaded("")
-    onFileChanged: reload()
+    onFileChanged: root.verifySettingsPath()
   }
+
+  Component.onCompleted: root.verifySettingsPath()
 
   Process {
     id: nextProc
-    command: ["omarchy-shell", "io.github.r4y-br.quran-motivation", "next"]
+    command: [root.omarchyShellBin, "io.github.r4y-br.quran-motivation", "next"]
+    clearEnvironment: true
+    environment: root.minimalShellEnv
   }
 
   Process {
     id: repositionProc
-    command: ["omarchy-shell", "io.github.r4y-br.quran-motivation", "edit"]
+    command: [root.omarchyShellBin, "io.github.r4y-br.quran-motivation", "edit"]
+    clearEnvironment: true
+    environment: root.minimalShellEnv
   }
 
   visible: true

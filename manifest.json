@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "io.github.r4y-br.quran-motivation",
   "name": "Quran Motivation",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "rayen",
   "description": "Overlays a random motivational Quran ayah (Arabic + translation) on the desktop background, rotating on a timer",
   "kinds": [
