@@ -13,13 +13,14 @@ Panel {
   readonly property string settingsPath: Quickshell.env("HOME") + "/.local/state/omarchy/quran-motivation-settings.json"
 
   // Security hardening (see SECURITY.md in the repo for the reasoning):
-  // trusted absolute binaries, a minimal explicit environment for every
-  // spawned process (no ambient PATH/LD_PRELOAD/etc. inheritance), and a
-  // no-follow/ownership/size guard before ever trusting settingsPath's
-  // content — all closing the gap a planted or swapped path could exploit.
+  // trusted absolute binaries and a minimal explicit environment for every
+  // spawned process (no ambient PATH/LD_PRELOAD/etc. inheritance). All
+  // settings reads/writes go through helpers/safe-settings-io.py, which
+  // opens every path component from $HOME down relative to its already-
+  // open parent directory descriptor with O_NOFOLLOW and publishes writes
+  // via a randomized exclusive 0600 temp file rename()'d atomically
+  // through that same retained descriptor.
   readonly property string omarchyShellBin: "/usr/bin/omarchy-shell"
-  readonly property string statBin: "/usr/bin/stat"
-  readonly property int settingsMaxBytes: 65536
   readonly property var minimalShellEnv: ({
     "PATH": "/usr/bin",
     "HOME": Quickshell.env("HOME") || "",
@@ -28,16 +29,22 @@ Panel {
     "XDG_RUNTIME_DIR": Quickshell.env("XDG_RUNTIME_DIR") || ""
   })
 
-  function currentUser() {
-    var u = Quickshell.env("USER")
-    return (u && u.length > 0) ? u : Quickshell.env("LOGNAME")
+  readonly property string settingsRelPath: ".local/state/omarchy/quran-motivation-settings.json"
+  readonly property string pythonBin: "/usr/bin/python3"
+  readonly property string safeIoHelper: String(Qt.resolvedUrl("helpers/safe-settings-io.py")).replace("file://", "")
+  readonly property var minimalIoEnv: ({ "HOME": Quickshell.env("HOME") || "" })
+
+  property string pendingSettingsWrite: ""
+  property bool settingsWritePending: false
+
+  function readSettings() {
+    if (!readSettingsProc.running) readSettingsProc.running = true
   }
 
-  // Re-checks settingsPath's on-disk identity before any read is allowed.
-  // GNU `stat` without `-L` reports the path itself rather than whatever a
-  // symlink there points to, so this never follows a swapped/planted link.
-  function verifySettingsPath() {
-    if (!statProc.running) statProc.running = true
+  function flushSettingsWrite() {
+    if (!settingsWritePending) return
+    settingsWritePending = false
+    writeSettingsProc.running = true
   }
 
   property bool visibleSetting: Settings.DEFAULTS.visible
@@ -62,7 +69,9 @@ Panel {
   }
 
   function writeSettings() {
-    settingsFile.setText(JSON.stringify(root.currentSettings(), null, 2) + "\n")
+    pendingSettingsWrite = JSON.stringify(root.currentSettings())
+    settingsWritePending = true
+    if (!writeSettingsProc.running) flushSettingsWrite()
   }
 
   function applyLoaded(raw) {
@@ -109,48 +118,45 @@ Panel {
   }
 
   Process {
-    id: statProc
-    command: [root.statBin, "-c", "%F|%U|%s", root.settingsPath]
+    id: readSettingsProc
+    command: [root.pythonBin, root.safeIoHelper, "read", root.settingsRelPath]
     clearEnvironment: true
-    environment: ({ "PATH": "/usr/bin" })
-    stdout: StdioCollector { id: statOut; waitForEnd: true }
+    environment: root.minimalIoEnv
+    stdout: StdioCollector { id: readSettingsOut; waitForEnd: true }
+    // Exit 0 = verified content; 3 = absent; 2/1 = guard or usage failure.
+    // Every non-zero case falls back to defaults, same as before.
     onExited: function(exitCode) {
-      if (exitCode !== 0) {
-        // Nothing at this path yet — safe; defaults apply until the first
-        // write creates it (via the atomic, rename-based write below).
-        settingsFile.blockLoading = true
-        root.applyLoaded("")
-        return
-      }
-      var parts = String(statOut.text || "").trim().split("|")
-      var isRegularFile = parts[0] === "regular file"
-      var ownedByUs = parts[1] === root.currentUser()
-      var sizeOk = parseInt(parts[2] || "0", 10) <= root.settingsMaxBytes
-      if (isRegularFile && ownedByUs && sizeOk) {
-        settingsFile.blockLoading = false
-        settingsFile.reload()
-      } else {
-        // Refuses to read through a symlink, a file owned by someone else,
-        // or an implausibly large file — falls back to defaults instead.
-        settingsFile.blockLoading = true
-        root.applyLoaded("")
-      }
+      root.applyLoaded(exitCode === 0 ? readSettingsOut.text : "")
     }
   }
 
-  FileView {
-    id: settingsFile
-    path: root.settingsPath
-    blockLoading: true
-    watchChanges: true
-    atomicWrites: true
-    printErrors: false
-    onLoaded: root.applyLoaded(text())
-    onLoadFailed: root.applyLoaded("")
-    onFileChanged: root.verifySettingsPath()
+  Process {
+    id: writeSettingsProc
+    command: [root.pythonBin, root.safeIoHelper, "write", root.settingsRelPath]
+    clearEnvironment: true
+    environment: root.minimalIoEnv
+    stdinEnabled: true
+    onStarted: write(root.pendingSettingsWrite + "\n")
+    onExited: function(exitCode) {
+      if (root.settingsWritePending) root.flushSettingsWrite()
+    }
   }
 
-  Component.onCompleted: root.verifySettingsPath()
+  // Pure inotify trigger: blockLoading/blockAllReads stay true forever, so
+  // this FileView never itself reads the file — it only tells us to re-run
+  // the safe helper above when something (us or an external actor) changes
+  // the path.
+  FileView {
+    id: settingsWatcher
+    path: root.settingsPath
+    watchChanges: true
+    blockLoading: true
+    blockAllReads: true
+    printErrors: false
+    onFileChanged: root.readSettings()
+  }
+
+  Component.onCompleted: root.readSettings()
 
   Process {
     id: nextProc

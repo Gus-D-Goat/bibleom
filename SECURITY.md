@@ -18,47 +18,60 @@ and to toggle drag-repositioning). Both `Process` blocks:
   `HOME`, `OMARCHY_PATH`, `WAYLAND_DISPLAY`, `XDG_RUNTIME_DIR`) — nothing
   else from the parent process's environment is inherited.
 
-The same pattern is used for the `stat` calls described below.
+The same trusted-absolute-command + minimal-environment treatment is used
+for the Python helper described below.
 
-## 2. No-follow / ownership / size guard on the settings file
+## 2. Descriptor-relative, no-follow settings I/O
 
 Both `Service.qml` (the desktop overlay) and `BarWidget.qml` (the control
-panel) read and write a small JSON settings file at a predictable, `$HOME`-
-derived path (`~/.local/state/omarchy/quran-motivation-settings.json`).
-Before trusting that path's content, each does:
+panel) need to read and write a small JSON settings file at a predictable,
+`$HOME`-derived path (`~/.local/state/omarchy/quran-motivation-settings.json`).
+Neither touches that path directly — both shell out to
+[`helpers/safe-settings-io.py`](helpers/safe-settings-io.py) (via
+`/usr/bin/python3`, absolute path, `clearEnvironment: true`, environment
+limited to `HOME`), which does the actual I/O using `os.open`/`os.mkdir`/
+`os.rename` with Linux's `dir_fd`-relative syscalls (`openat`/`mkdirat`/
+`renameat`):
 
-```
-/usr/bin/stat -c '%F|%U|%s' <path>
-```
+- **Traversal**: starting from `$HOME` itself, every intermediate path
+  component (`.local`, `state`, `omarchy`) is opened with
+  `O_DIRECTORY | O_NOFOLLOW` *relative to its parent's already-open file
+  descriptor* — never by re-resolving a string path — and each is checked
+  to be a directory owned by the current user with no group/world write
+  bit before descending further. A component swapped for a symlink after
+  being checked is never silently followed later: the next `openat()` on
+  it simply fails closed (`ELOOP`).
+- **Read**: the final file is opened `O_NOFOLLOW` relative to the retained
+  parent descriptor, then `fstat()`'d on the open descriptor (not the
+  path) to confirm it's a regular file, owned by the current user, within
+  a 64 KiB cap, before reading up to that cap.
+- **Write**: content is published by creating a randomized, exclusive,
+  `0600` temp file (`O_CREAT | O_EXCL`) through the *same* retained
+  directory descriptor, then `rename()`-ing it into place via
+  `src_dir_fd`/`dst_dir_fd` on that same descriptor — a `renameat()`, not a
+  fresh path lookup, so it can't be redirected by a component swapped in
+  between steps, and it replaces the target's directory entry (symlink or
+  not) atomically rather than ever writing through one.
+- Anything absent, wrong type, wrong owner, or oversized makes the helper
+  exit non-zero (see the exit codes documented at the top of the script);
+  the QML side treats every non-zero exit as "use defaults," never as
+  partial/untrusted content.
 
-with the same trusted-absolute-command + minimal-environment treatment as
-above. GNU `stat` without `-L`/`--dereference` reports on the path *itself*,
-not whatever a symlink there might point to — so a planted or swapped
-symlink at that exact path is detected rather than followed. The result is
-required to show:
+This closes the gap the earlier `stat`-then-`FileView.reload()` approach
+had: that was a `stat` on a path string followed by a *separate* open of
+the same path string, so a swap in between could still change what the
+second open resolved to. Here there is no second path-string resolution —
+every step after the initial `$HOME` open operates on an already-open
+descriptor.
 
-- `%F` is exactly `regular file` (not a symlink, device, directory, etc.)
-- `%U` matches the current user (`$USER`/`$LOGNAME`)
-- `%s` is within a generous but bounded cap (64 KiB; real settings content
-  is a few hundred bytes) — guards against a swapped-in oversized file
-
-`FileView.blockLoading` stays `true` until that check passes, so the file is
-never read unless all three hold; if the path doesn't exist yet, or fails
-the check, in-memory defaults are used instead.
-
-Writes are unaffected by this guard and always go through
-`FileView.atomicWrites: true` (write-temp-then-rename), which — being a
-`rename(2)` onto the target path — replaces whatever directory entry is
-there (including a symlink) rather than writing through it. So the next
-settings change from the panel self-heals a tampered path.
-
-**Caveat:** the check-then-load is two separate operations (a `stat` process,
-then a later file read), not a single atomic no-follow open syscall — a
-pure-QML/Quickshell plugin has no access to `openat2(RESOLVE_NO_SYMLINKS)`
-or similar. Exploiting the gap between them would require an attacker who
-can already write inside the user's own `$HOME` at the moment of the
-check, which is a substantially higher bar than the read-time guard this
-closes.
+I verified this against real attacks locally, not just by reasoning about
+it: pointing the settings path at a symlink to `/etc/passwd` made the read
+fail closed with `ELOOP` (never printed the symlink's target), and writing
+through that same symlinked path replaced the symlink itself with a real
+regular file (verifying `/etc/passwd` was untouched afterward) rather than
+writing through it — exactly the self-healing `rename()` semantics this
+relies on. An oversized planted file was also correctly rejected before
+any content was read into memory.
 
 ## Reporting
 

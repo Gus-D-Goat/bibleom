@@ -32,6 +32,9 @@ This plugin has no bundled third-party code. At runtime it relies on:
   installed on Arch via the `noto-fonts` package group. If absent, the
   overlay falls back to the system default font, which may not shape Arabic
   script as cleanly.
+- **Python 3** (`/usr/bin/python3`, stdlib only — no pip packages), used by
+  `helpers/safe-settings-io.py` for descriptor-relative, symlink-safe
+  settings I/O. Present by default on Arch/Omarchy.
 
 The bundled ayah text/translations in `ayahs.json` are Quranic scripture,
 transcribed and paraphrased by the plugin author; they are not copyrighted
