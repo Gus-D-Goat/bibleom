@@ -288,15 +288,21 @@ Item {
           readonly property real maxTextWidth: Math.min(panel.width * 0.72, 900)
           spacing: Math.round(14 * root.scale)
 
+          // Primary line: `verse` (Latin-script entries) or `arabic`
+          // (original Quran schema). Hidden when empty so a lone
+          // translation/reference doesn't leave a dead gap in the column.
           Text {
             width: Math.min(implicitWidth, column.maxTextWidth)
             anchors.horizontalCenter: parent.horizontalCenter
             textFormat: Text.PlainText
-            text: root.current ? root.current.arabic : ""
+            text: root.current ? (root.current.verse || root.current.arabic || "") : ""
+            visible: text.length > 0
             color: "#ffffff"
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            font.family: "Noto Naskh Arabic"
+            // Noto Naskh Arabic has no Latin glyphs, so only apply it to
+            // actual Arabic text; anything else gets a Latin-capable family.
+            font.family: (root.current && root.current.verse) ? "sans-serif" : "Noto Naskh Arabic"
             font.pixelSize: Math.round(30 * root.scale)
             style: Text.Raised
             styleColor: Qt.rgba(0, 0, 0, 0.65)
@@ -306,7 +312,8 @@ Item {
             width: Math.min(implicitWidth, column.maxTextWidth)
             anchors.horizontalCenter: parent.horizontalCenter
             textFormat: Text.PlainText
-            text: root.current ? root.current.translation : ""
+            text: root.current ? (root.current.translation || "") : ""
+            visible: text.length > 0
             color: Qt.rgba(1, 1, 1, 0.88)
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
