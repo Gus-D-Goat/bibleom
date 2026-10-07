@@ -1,162 +1,426 @@
 [
   {
-    "arabic": "إِنَّ مَعَ الْعُسْرِ يُسْرًا",
-    "translation": "Indeed, with hardship [will be] ease.",
-    "reference": "Ash-Sharh 94:6"
+    "verse": "I can do all things through Christ who strengthens me.",
+    "reference": "Philippians 4:13"
   },
   {
-    "arabic": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
-    "translation": "Allah does not burden a soul beyond that it can bear.",
-    "reference": "Al-Baqarah 2:286"
+    "verse": "The Lord is my shepherd; I shall not want.",
+    "reference": "Psalm 23:1"
   },
   {
-    "arabic": "وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا",
-    "translation": "And whoever fears Allah - He will make for him a way out.",
-    "reference": "At-Talaq 65:2"
+    "verse": "The Lord is my light and my salvation—whom shall I fear?",
+    "reference": "Psalm 27:1"
   },
   {
-    "arabic": "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
-    "translation": "And whoever relies upon Allah - then He is sufficient for him.",
-    "reference": "At-Talaq 65:3"
+    "verse": "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+    "reference": "Joshua 1:9"
   },
   {
-    "arabic": "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
-    "translation": "O you who believe, seek help through patience and prayer. Indeed, Allah is with the patient.",
-    "reference": "Al-Baqarah 2:153"
+    "verse": "Cast all your anxiety on him because he cares for you.",
+    "reference": "1 Peter 5:7"
   },
   {
-    "arabic": "لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا",
-    "translation": "Do not despair of the mercy of Allah. Indeed, Allah forgives all sins.",
-    "reference": "Az-Zumar 39:53"
+    "verse": "Come to me, all you who are weary and burdened, and I will give you rest.",
+    "reference": "Matthew 11:28"
   },
   {
-    "arabic": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
-    "translation": "Verily, in the remembrance of Allah do hearts find rest.",
-    "reference": "Ar-Ra'd 13:28"
+    "verse": "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+    "reference": "Psalm 34:18"
   },
   {
-    "arabic": "وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ",
-    "translation": "But perhaps you hate a thing and it is good for you.",
-    "reference": "Al-Baqarah 2:216"
+    "verse": "The Lord will fight for you; you need only to be still.",
+    "reference": "Exodus 14:14"
   },
   {
-    "arabic": "إِنَّهُ لَا يَيْأَسُ مِن رَّوْحِ اللَّهِ إِلَّا الْقَوْمُ الْكَافِرُونَ",
-    "translation": "Indeed, no one despairs of relief from Allah except the disbelieving people.",
-    "reference": "Yusuf 12:87"
+    "verse": "Trust in the Lord with all your heart and lean not on your own understanding.",
+    "reference": "Proverbs 3:5"
   },
   {
-    "arabic": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
-    "translation": "So do not weaken and do not grieve, and you will be superior if you are [true] believers.",
-    "reference": "Ali 'Imran 3:139"
+    "verse": "In all your ways submit to him, and he will make your paths straight.",
+    "reference": "Proverbs 3:6"
   },
   {
-    "arabic": "فَاذْكُرُونِي أَذْكُرْكُمْ",
-    "translation": "So remember Me; I will remember you.",
-    "reference": "Al-Baqarah 2:152"
+    "verse": "Commit to the Lord whatever you do, and he will establish your plans.",
+    "reference": "Proverbs 16:3"
   },
   {
-    "arabic": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ",
-    "translation": "And your Lord is going to give you, and you will be satisfied.",
-    "reference": "Ad-Duha 93:5"
+    "verse": "Whatever you do, work at it with all your heart, as working for the Lord.",
+    "reference": "Colossians 3:23"
   },
   {
-    "arabic": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",
-    "translation": "Your Lord has not forsaken you, nor has He detested [you].",
-    "reference": "Ad-Duha 93:3"
+    "verse": "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+    "reference": "Galatians 6:9"
   },
   {
-    "arabic": "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ ۗ وَنَبْلُوكُم بِالشَّرِّ وَالْخَيْرِ فِتْنَةً",
-    "translation": "Every soul will taste death, and We test you with hardship and with ease.",
-    "reference": "Al-Anbya 21:35"
+    "verse": "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds.",
+    "reference": "James 1:2"
   },
   {
-    "arabic": "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ ۚ إِنَّ اللَّهَ يُحِبُّ الْمُتَوَكِّلِينَ",
-    "translation": "And when you have decided, then put your trust in Allah.",
-    "reference": "Ali 'Imran 3:159"
+    "verse": "Because you know that the testing of your faith produces perseverance.",
+    "reference": "James 1:3"
   },
   {
-    "arabic": "إِنَّمَا الْمُؤْمِنُونَ الَّذِينَ إِذَا ذُكِرَ اللَّهُ وَجِلَتْ قُلُوبُهُمْ وَإِذَا تُلِيَتْ عَلَيْهِمْ آيَاتُهُ زَادَتْهُمْ إِيمَانًا وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ",
-    "translation": "The believers are only those whose hearts tremble at the mention of Allah, whose faith increases when His verses are recited, and who rely upon their Lord.",
-    "reference": "Al-Anfal 8:2"
+    "verse": "Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+    "reference": "James 1:4"
   },
   {
-    "arabic": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ",
-    "translation": "Say: Nothing will happen to us except what Allah has decreed for us; He is our protector. And upon Allah let the believers rely.",
-    "reference": "At-Tawbah 9:51"
+    "verse": "Blessed is the one who perseveres under trial because, having stood the test, that person will receive the crown of life.",
+    "reference": "James 1:12"
   },
   {
-    "arabic": "وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ",
-    "translation": "We will surely test you with fear and hunger and loss of wealth, lives, and fruits — but give good tidings to the patient.",
-    "reference": "Al-Baqarah 2:155"
+    "verse": "We also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope.",
+    "reference": "Romans 5:3-4"
   },
   {
-    "arabic": "وَالْعَصْرِ * إِنَّ الْإِنسَانَ لَفِي خُسْرٍ * إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
-    "translation": "By time, mankind is in loss, except those who believe, do righteous deeds, and urge one another to truth and to patience.",
-    "reference": "Al-'Asr 103:1-3"
+    "verse": "And hope does not put us to shame, because God's love has been poured out into our hearts.",
+    "reference": "Romans 5:5"
   },
   {
-    "arabic": "وَاصْبِرْ فَإِنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُحْسِنِينَ",
-    "translation": "Be patient — indeed, Allah does not let the reward of the good-doers be lost.",
-    "reference": "Hud 11:115"
+    "verse": "For we live by faith, not by sight.",
+    "reference": "2 Corinthians 5:7"
   },
   {
-    "arabic": "مَا عِندَكُمْ يَنفَدُ ۖ وَمَا عِندَ اللَّهِ بَاقٍ",
-    "translation": "Whatever you have will end, but what is with Allah will endure.",
-    "reference": "An-Nahl 16:96"
+    "verse": "We are hard pressed on every side, but not crushed; perplexed, but not in despair.",
+    "reference": "2 Corinthians 4:8"
   },
   {
-    "arabic": "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ",
-    "translation": "Be patient, outdo one another in patience, stand firm, and be mindful of Allah, that you may succeed.",
-    "reference": "Ali 'Imran 3:200"
+    "verse": "We are persecuted, but not abandoned; struck down, but not destroyed.",
+    "reference": "2 Corinthians 4:9"
   },
   {
-    "arabic": "أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ * وَوَضَعْنَا عَنكَ وِزْرَكَ * الَّذِي أَنقَضَ ظَهْرَكَ * وَرَفَعْنَا لَكَ ذِكْرَكَ",
-    "translation": "Did We not expand your chest for you, relieve you of your burden, and raise your reputation high?",
-    "reference": "Ash-Sharh 94:1-4"
+    "verse": "For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all.",
+    "reference": "2 Corinthians 4:17"
   },
   {
-    "arabic": "وَابْتَغِ فِيمَا آتَاكَ اللَّهُ الدَّارَ الْآخِرَةَ ۖ وَلَا تَنسَ نَصِيبَكَ مِنَ الدُّنْيَا",
-    "translation": "Seek, through what Allah has given you, the home of the Hereafter — and do not forget your share of this world.",
-    "reference": "Al-Qasas 28:77"
+    "verse": "So we fix our eyes not on what is seen, but on what is unseen, since what is seen is temporary, but what is unseen is eternal.",
+    "reference": "2 Corinthians 4:18"
   },
   {
-    "arabic": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ",
-    "translation": "Allah does not change the condition of a people until they change what is within themselves.",
-    "reference": "Ar-Ra'd 13:11"
+    "verse": "The Lord is my strength and my shield; my heart trusts in him, and he helps me.",
+    "reference": "Psalm 28:7"
   },
   {
-    "arabic": "وَأَن لَّيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ",
-    "translation": "Man will have nothing except what he strives for.",
-    "reference": "An-Najm 53:39"
+    "verse": "God is our refuge and strength, an ever-present help in trouble.",
+    "reference": "Psalm 46:1"
   },
   {
-    "arabic": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-    "translation": "Those who strive for Us — We will surely guide them to Our ways.",
-    "reference": "Al-'Ankabut 29:69"
+    "verse": "Be still, and know that I am God.",
+    "reference": "Psalm 46:10"
   },
   {
-    "arabic": "إِنَّا لَا نُضِيعُ أَجْرَ مَنْ أَحْسَنَ عَمَلًا",
-    "translation": "Indeed, We will not let the reward of those who do good be lost.",
-    "reference": "Al-Kahf 18:30"
+    "verse": "Those who sow with tears will reap with songs of joy.",
+    "reference": "Psalm 126:5"
   },
   {
-    "arabic": "مَن كَانَ يُرِيدُ الْعِزَّةَ فَلِلَّهِ الْعِزَّةُ جَمِيعًا",
-    "translation": "Whoever desires honor — all honor belongs to Allah.",
-    "reference": "Fatir 35:10"
+    "verse": "The Lord gives strength to his people; the Lord blesses his people with peace.",
+    "reference": "Psalm 29:11"
   },
   {
-    "arabic": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
-    "translation": "If you are grateful, I will surely increase you [in favor].",
-    "reference": "Ibrahim 14:7"
+    "verse": "Wait for the Lord; be strong and take heart and wait for the Lord.",
+    "reference": "Psalm 27:14"
   },
   {
-    "arabic": "لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا",
-    "translation": "Do not grieve; indeed Allah is with us.",
-    "reference": "At-Tawbah 9:40"
+    "verse": "The Lord is good, a refuge in times of trouble. He cares for those who trust in him.",
+    "reference": "Nahum 1:7"
   },
   {
-    "arabic": "لَا تَخَافَا ۖ إِنَّنِي مَعَكُمَا أَسْمَعُ وَأَرَىٰ",
-    "translation": "Do not fear — indeed, I am with you both, hearing and seeing.",
-    "reference": "Ta-Ha 20:46"
+    "verse": "Though he may stumble, he will not fall, for the Lord upholds him with his hand.",
+    "reference": "Psalm 37:24"
+  },
+  {
+    "verse": "Delight yourself in the Lord, and he will give you the desires of your heart.",
+    "reference": "Psalm 37:4"
+  },
+  {
+    "verse": "Commit your way to the Lord; trust in him and he will do this.",
+    "reference": "Psalm 37:5"
+  },
+  {
+    "verse": "Do not be overcome by evil, but overcome evil with good.",
+    "reference": "Romans 12:21"
+  },
+  {
+    "verse": "If God is for us, who can be against us?",
+    "reference": "Romans 8:31"
+  },
+  {
+    "verse": "In all these things we are more than conquerors through him who loved us.",
+    "reference": "Romans 8:37"
+  },
+  {
+    "verse": "And we know that in all things God works for the good of those who love him.",
+    "reference": "Romans 8:28"
+  },
+  {
+    "verse": "The righteous person may have many troubles, but the Lord delivers him from them all.",
+    "reference": "Psalm 34:19"
+  },
+  {
+    "verse": "He gives strength to the weary and increases the power of the weak.",
+    "reference": "Isaiah 40:29"
+  },
+  {
+    "verse": "Those who hope in the Lord will renew their strength. They will soar on wings like eagles.",
+    "reference": "Isaiah 40:31"
+  },
+  {
+    "verse": "Do not fear, for I am with you; do not be dismayed, for I am your God.",
+    "reference": "Isaiah 41:10"
+  },
+  {
+    "verse": "I will strengthen you and help you; I will uphold you with my righteous right hand.",
+    "reference": "Isaiah 41:10"
+  },
+  {
+    "verse": "When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you.",
+    "reference": "Isaiah 43:2"
+  },
+  {
+    "verse": "When you walk through the fire, you will not be burned; the flames will not set you ablaze.",
+    "reference": "Isaiah 43:2"
+  },
+  {
+    "verse": "Forget the former things; do not dwell on the past.",
+    "reference": "Isaiah 43:18"
+  },
+  {
+    "verse": "See, I am doing a new thing! Now it springs up; do you not perceive it?",
+    "reference": "Isaiah 43:19"
+  },
+  {
+    "verse": "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+    "reference": "Isaiah 26:3"
+  },
+  {
+    "verse": "Those who know your name trust in you, for you, Lord, have never forsaken those who seek you.",
+    "reference": "Psalm 9:10"
+  },
+  {
+    "verse": "Every good and perfect gift is from above, coming down from the Father of the heavenly lights.",
+    "reference": "James 1:17"
+  },
+  {
+    "verse": "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
+    "reference": "Matthew 7:7"
+  },
+  {
+    "verse": "For nothing will be impossible with God.",
+    "reference": "Luke 1:37"
+  },
+  {
+    "verse": "With man this is impossible, but with God all things are possible.",
+    "reference": "Matthew 19:26"
+  },
+  {
+    "verse": "Do not worry about tomorrow, for tomorrow will worry about itself.",
+    "reference": "Matthew 6:34"
+  },
+  {
+    "verse": "Seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+    "reference": "Matthew 6:33"
+  },
+  {
+    "verse": "Your word is a lamp for my feet, a light on my path.",
+    "reference": "Psalm 119:105"
+  },
+  {
+    "verse": "The steps of a good man are ordered by the Lord, and he delights in his way.",
+    "reference": "Psalm 37:23"
+  },
+  {
+    "verse": "Though the righteous fall seven times, they rise again.",
+    "reference": "Proverbs 24:16"
+  },
+  {
+    "verse": "The name of the Lord is a fortified tower; the righteous run to it and are safe.",
+    "reference": "Proverbs 18:10"
+  },
+  {
+    "verse": "The fear of the Lord is the beginning of wisdom.",
+    "reference": "Proverbs 9:10"
+  },
+  {
+    "verse": "A wise man is strong, and a man of knowledge increases power.",
+    "reference": "Proverbs 24:5"
+  },
+  {
+    "verse": "Be on your guard; stand firm in the faith; be courageous; be strong.",
+    "reference": "1 Corinthians 16:13"
+  },
+  {
+    "verse": "Therefore, my dear brothers and sisters, stand firm. Let nothing move you. Always give yourselves fully to the work of the Lord.",
+    "reference": "1 Corinthians 15:58"
+  },
+  {
+    "verse": "Run in such a way as to get the prize.",
+    "reference": "1 Corinthians 9:24"
+  },
+  {
+    "verse": "I press on toward the goal to win the prize for which God has called me heavenward in Christ Jesus.",
+    "reference": "Philippians 3:14"
+  },
+  {
+    "verse": "Forget what is behind and strain toward what is ahead.",
+    "reference": "Philippians 3:13"
+  },
+  {
+    "verse": "Whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—think about such things.",
+    "reference": "Philippians 4:8"
+  },
+  {
+    "verse": "Rejoice in the Lord always. I will say it again: Rejoice!",
+    "reference": "Philippians 4:4"
+  },
+  {
+    "verse": "The peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+    "reference": "Philippians 4:7"
+  },
+  {
+    "verse": "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+    "reference": "Philippians 4:6"
+  },
+  {
+    "verse": "The Lord is near to all who call on him, to all who call on him in truth.",
+    "reference": "Psalm 145:18"
+  },
+  {
+    "verse": "The Lord is my strength and my song; he has become my salvation.",
+    "reference": "Isaiah 12:2"
+  },
+  {
+    "verse": "My grace is sufficient for you, for my power is made perfect in weakness.",
+    "reference": "2 Corinthians 12:9"
+  },
+  {
+    "verse": "When I am weak, then I am strong.",
+    "reference": "2 Corinthians 12:10"
+  },
+  {
+    "verse": "Let us run with perseverance the race marked out for us, fixing our eyes on Jesus.",
+    "reference": "Hebrews 12:1-2"
+  },
+  {
+    "verse": "Let us hold unswervingly to the hope we profess, for he who promised is faithful.",
+    "reference": "Hebrews 10:23"
+  },
+  {
+    "verse": "You need to persevere so that when you have done the will of God, you will receive what he has promised.",
+    "reference": "Hebrews 10:36"
+  },
+  {
+    "verse": "Now faith is confidence in what we hope for and assurance about what we do not see.",
+    "reference": "Hebrews 11:1"
+  },
+  {
+    "verse": "And without faith it is impossible to please God.",
+    "reference": "Hebrews 11:6"
+  },
+  {
+    "verse": "Let us then approach God's throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+    "reference": "Hebrews 4:16"
+  },
+  {
+    "verse": "The Lord is faithful, and he will strengthen you and protect you from the evil one.",
+    "reference": "2 Thessalonians 3:3"
+  },
+  {
+    "verse": "May the God of hope fill you with all joy and peace as you trust in him.",
+    "reference": "Romans 15:13"
+  },
+  {
+    "verse": "Be joyful in hope, patient in affliction, faithful in prayer.",
+    "reference": "Romans 12:12"
+  },
+  {
+    "verse": "Let everything you do be done in love.",
+    "reference": "1 Corinthians 16:14"
+  },
+  {
+    "verse": "And now these three remain: faith, hope and love. But the greatest of these is love.",
+    "reference": "1 Corinthians 13:13"
+  },
+  {
+    "verse": "The Lord bless you and keep you; the Lord make his face shine on you and be gracious to you.",
+    "reference": "Numbers 6:24-25"
+  },
+  {
+    "verse": "The Lord turn his face toward you and give you peace.",
+    "reference": "Numbers 6:26"
+  },
+  {
+    "verse": "I will never leave you nor forsake you.",
+    "reference": "Hebrews 13:5"
+  },
+  {
+    "verse": "The Lord is my helper; I will not be afraid. What can mere mortals do to me?",
+    "reference": "Hebrews 13:6"
+  },
+  {
+    "verse": "Humble yourselves before the Lord, and he will lift you up.",
+    "reference": "James 4:10"
+  },
+  {
+    "verse": "Draw near to God, and he will draw near to you.",
+    "reference": "James 4:8"
+  },
+  {
+    "verse": "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault.",
+    "reference": "James 1:5"
+  },
+  {
+    "verse": "The Lord is my strength and my fortress and my deliverer.",
+    "reference": "Psalm 18:2"
+  },
+  {
+    "verse": "The Lord is gracious and compassionate, slow to anger and rich in love.",
+    "reference": "Psalm 145:8"
+  },
+  {
+    "verse": "Taste and see that the Lord is good; blessed is the one who takes refuge in him.",
+    "reference": "Psalm 34:8"
+  },
+  {
+    "verse": "The Lord is good to those whose hope is in him, to the one who seeks him.",
+    "reference": "Lamentations 3:25"
+  },
+  {
+    "verse": "Because of the Lord's great love we are not consumed, for his compassions never fail.",
+    "reference": "Lamentations 3:22"
+  },
+  {
+    "verse": "They are new every morning; great is your faithfulness.",
+    "reference": "Lamentations 3:23"
+  },
+  {
+    "verse": "The Lord is my portion; therefore I will wait for him.",
+    "reference": "Lamentations 3:24"
+  },
+  {
+    "verse": "The Lord is good to all; he has compassion on all he has made.",
+    "reference": "Psalm 145:9"
+  },
+  {
+    "verse": "Give thanks to the Lord, for he is good; his love endures forever.",
+    "reference": "Psalm 107:1"
+  },
+  {
+    "verse": "Let the peace of Christ rule in your hearts.",
+    "reference": "Colossians 3:15"
+  },
+  {
+    "verse": "Above all else, guard your heart, for everything you do flows from it.",
+    "reference": "Proverbs 4:23"
+  },
+  {
+    "verse": "In their hearts humans plan their course, but the Lord establishes their steps.",
+    "reference": "Proverbs 16:9"
+  },
+  {
+    "verse": "A gentle answer turns away wrath, but a harsh word stirs up anger.",
+    "reference": "Proverbs 15:1"
+  },
+  {
+    "verse": "The wise in heart accept commands, but a chattering fool comes to ruin.",
+    "reference": "Proverbs 10:8"
   }
 ]
